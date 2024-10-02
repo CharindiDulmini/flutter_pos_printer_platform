@@ -380,7 +380,7 @@ class FlutterPosPrinterPlatformPlugin : FlutterPlugin, MethodCallHandler, Plugin
             permissions.add(Manifest.permission.BLUETOOTH_CONNECT)
         }
 
-        if (!hasPermissions(context, *permissions.toTypedArray())) {
+        if (!(hasPermissions(context, *permissions.toTypedArray()) ?? true)) {
             ActivityCompat.requestPermissions(currentActivity, permissions.toTypedArray(), PERMISSION_ALL)
             return false
         }
